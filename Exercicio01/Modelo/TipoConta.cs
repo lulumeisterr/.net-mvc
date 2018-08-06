@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01.Fiap.HelloWorld.UI.Model
+namespace Exercicio01.Modelo
 {
-    interface ITrabalhador
+    enum TipoConta
     {
-        void ReceberSalario();
+
+        Comum ,
+        Especial ,
+        Premium 
+
     }
 }

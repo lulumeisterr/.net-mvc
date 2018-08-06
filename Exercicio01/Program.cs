@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01.Fiap.HelloWorld.UI.Model
+namespace Exercicio01
 {
-    interface ITrabalhador
+    class Program
     {
-        void ReceberSalario();
+        static void Main(string[] args)
+        {
+        }
     }
 }
