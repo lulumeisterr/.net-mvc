@@ -6,16 +6,34 @@ using System.Threading.Tasks;
 
 namespace _01.Fiap.HelloWorld.UI.Model
 {
-    class Pessoa
+
+    // Classe abstrata : Não pode ser instanciada e pode conter metodos abstratos
+
+    abstract class Pessoa
     {
         // propriedade de leitura
         // utilizar undesercor para se obter uma padronização 
 
         private string _nome;
-      
+
         // Propriedades (get e sets) O Metodo Deve ser publico
 
-        public float Peso { get; set;}
+        public float Peso { get; set; }
+
+        // Construtor Cheio
+
+        public Pessoa(string nome, float peso)
+        {
+            // Construtor da classe filha necessita chamar pelomenos 1 construtor da classe pai
+
+            _nome = nome;
+            peso = Peso;
+        }
+
+        // GET e SET
+
+        // Usando Enum
+        public Genero Genero { get; set; }
 
         public string Nome
         {
@@ -31,5 +49,17 @@ namespace _01.Fiap.HelloWorld.UI.Model
 
             }
         }
+
+        // metodos
+
+        public virtual void Estudar()
+        {
+            Console.WriteLine("Pessoa estudando");
+        }
+
+
+        // Classe abstrata pode conter metodos abstratos
+        public abstract void FazerProva();
+
     }
 }
