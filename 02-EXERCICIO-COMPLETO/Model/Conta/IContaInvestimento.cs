@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercicio01.Modelo
+namespace ConsoleApp1.Model.Conta
 {
-    enum TipoConta
+    interface IContaInvestimento
     {
 
-        Comum ,
-        Especial ,
-        Premium 
+        decimal CalculaInvestimento();
 
     }
 }
