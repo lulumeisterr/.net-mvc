@@ -1,0 +1,69 @@
+﻿
+@model _04.Fiap.Web.MVC.Models.Multa
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cadastrar</h2>
+
+
+@if (Model != null)
+{
+        <ul>
+        @ViewBag.qualquerValor
+        @TempData["msg"]
+        </ul>
+    
+   <li>@Model.data</li>
+   <li>@Model.endereco</li>
+}
+
+<!--
+
+     Acessibilidade passando o objeto com o model apartir de um objeto instanciado na classe controller
+
+-->
+
+<form action="/Cadastrar/Index" method="post">
+
+    <div class="form-group">
+        <label for="idNivel">Nivel</label>
+        <select name="nivel" class="form-control">
+
+            <option value="level">Leve</option>
+            <option value="media">Média</option>
+            <option value="grave">Grave</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="id_data">Data</label>
+        <input class="form-control" type="date" name="data" id="id_data" />
+    </div>
+
+    <div class="form-group">
+        <label for="id_endereco">Endereço</label>
+        <input class="form-control" type="text" name="endereco" id="id_endereco" placeholder="Digite o endereço" />
+    </div>
+
+    <div class="form-group">
+        <input type="checkbox" name="notificado" id="id_notificado" />
+        <labe for="id_notificado">Notificado</label>
+
+    </div>
+
+    <div class="form-group">
+        <label for="id_valor">Valor</label>
+        <input class="form-control" type="text" name="valor" placeholder="Digite o valor" id="id_valor" />
+    </div>
+
+    <div class="form-group">
+        <label for="id_placa">Placa</label>
+        <input class="form-control" type="text" name="placa" placeholder="Digite o valor" id="id_placa" />
+    </div>
+
+    <input type="submit" name="enviar" class="btn btn-primary" value="Enviar" />
+</form>
+
