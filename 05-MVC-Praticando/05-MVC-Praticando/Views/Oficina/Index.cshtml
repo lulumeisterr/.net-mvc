@@ -1,0 +1,60 @@
+﻿@model _05_MVC_Praticando.Models.Oficina
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+}
+
+<!-- Utlizando Helpers -->
+
+<h2>Index</h2>
+
+<!-- Utilizar o usingbeginForm para inicializar o helper -->
+<!-- Por padrão ele retornará a mesma pagina no formato get -->
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["msg"]
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+
+
+    <div class="form-group">
+        <!-- Criando a label e input -->
+        @Html.LabelFor(vars => vars.Nome)
+        @Html.TextBoxFor(vars => vars.Nome , new { @class = "form-control" })
+
+    </div>
+
+    <div class="form-group">
+        <!-- Criando a label e input -->
+
+        @Html.LabelFor(vars => vars.Oficina_24h)
+        @Html.CheckBoxFor(vars => vars.Oficina_24h)
+
+    </div>
+
+    <div class="form-group">
+        <!-- Criando a label e input -->
+        @Html.LabelFor(vars => vars.Endereco)
+        @Html.TextBoxFor(vars => vars.Endereco , new { @class = "form-control" })
+    </div>
+
+
+    <!-- Colocando o Select -->
+
+    <div class="form-group">
+        @Html.LabelFor(vars => vars.Tipo)
+        @Html.DropDownListFor(l => l.Tipo , (SelectList)ViewBag.ListarSelect , "Selecione" , new {@class = "form-control"})
+    </div>
+
+    <div>
+        <input type="submit" value="Cadastrar" class="btn btn-primary" />
+    </div>
+
+}

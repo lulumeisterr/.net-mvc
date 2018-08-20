@@ -1,0 +1,34 @@
+﻿@model List<_05_MVC_Praticando.Models.Oficina>
+<!-- Passar um argumento com uma lista -->
+
+@{
+    ViewBag.Title = "RetornoLista";
+}
+
+<h2>RetornoLista</h2>
+
+
+<table class="table">
+
+    <tr>
+        <th>Nome</th>
+        <th>24 Horas</th>
+        <th>Endereço</th>
+    </tr>
+
+
+    @foreach (var item in Model) 
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.Oficina_24h</td>
+            <td>@item.Endereco</td>
+
+        </tr>
+
+    }
+
+</table>
+
+    }
+
