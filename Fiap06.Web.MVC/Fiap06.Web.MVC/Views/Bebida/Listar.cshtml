@@ -1,0 +1,86 @@
+﻿@model List<Fiap06.Web.MVC.Models.Bebida>
+
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Lista de Bebidas</h2>
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["msg"]
+    </div>
+}
+
+
+<!-- Realizando pesquisa -->
+
+@using (Html.BeginForm("Pesquisar","Bebida" , FormMethod.Get , new { @class = "form-inline" }))
+{
+<input type="text" name="nome" id="id_nome" class="form-control" placeholder="Digite o nome" />
+<input type="submit" value="Pesquisar" class="btn btn-primary"/>
+}
+
+<table class="table table-striped">
+    <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Destilado</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.BebidaId</td>
+            <td>@item.Nome</td>
+            <td>@item.Preco</td>
+            <td>@item.Destilado</td>
+            <td>
+                @Html.ActionLink("Editar", "Atualizar", new { id = item.BebidaId }, new { @class = "btn btn-info btn-sm" })
+            </td>
+            <td>
+                <!-- Recuperar o ID da bebida para ser excluido -->
+                <!-- Recebe o id criado no input hidden e passar a variavel que esta representado o model ou seja o indice e chamar o atributo  -->
+                <button onclick="codigoBebida.value = @item.BebidaId" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+                    Excluir
+                </button>
+
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Excluir</h4>
+            </div>
+            <div class="modal-body">
+                Deseja Realmente apagar a bebida ? Isso é irrerverssível
+            </div>
+            <div class="modal-footer">
+
+                <!-- Criando um formulario para realizar a ação -->
+                <!-- Passar o nome do metodo que ira realizar a ação e nome do Controller -->
+                @using (Html.BeginForm("Excluir", "Bebida"))
+                {
+                    // 1 - Criar um campo invisivel para realizar a exclusão
+                    // 2 - Passar o name igual a assinatura feita no metodo excluir
+                    // 3 - Passar onclick no modal no botao excluir
+                    <input type="hidden" name="id" id="codigoBebida"/>
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <!-- Passar o tipo de atributo para ele dar o realod -->
+                    <button type="submit" class="btn btn-primary">Excluir</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
