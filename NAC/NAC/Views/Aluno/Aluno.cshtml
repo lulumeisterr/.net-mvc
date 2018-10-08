@@ -1,0 +1,37 @@
+﻿
+@model  NAC.Models.Aluno
+
+@{
+    ViewBag.Title = "Aluno";
+}
+
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success">
+           @TempData["msg"]
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-group">
+
+        @Html.LabelFor(t => t.nome)
+        @Html.TextBoxFor(t => t.nome, new { @class = "form-control" })
+
+    </div>
+
+    <!-- Referenciando uma Turma no Aluno -->
+
+    <div class="form-group">
+
+        @Html.LabelFor(t => t.Turma)
+        @Html.DropDownListFor(t => t.TurmaId , ViewBag.turmas as SelectList , "Selecione" , new { @class = "form-control" })
+
+    </div>
+
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+}
+

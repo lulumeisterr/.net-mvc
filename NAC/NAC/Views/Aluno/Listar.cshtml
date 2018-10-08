@@ -1,0 +1,83 @@
+﻿
+@model List<NAC.Models.Aluno>
+
+<!-- Adicionar um List no model -->
+
+
+@{
+    ViewBag.Title = "Listar";
+}
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["msg"]
+    </div>
+}
+
+<h2>Lista</h2>
+
+@using (Html.BeginForm("Pesquisar", "Aluno", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <input type="text" name="nome" class="form-control" id="Inome" placeholder="Digite um Nome" />
+    <input type="submit" value="Pesquisar" class="btn btn-primary" />
+}
+
+<table class="table table-striped">
+
+    <tr>
+        <th>Nome</th>
+        <th>Situacao</th>
+        <th>Turma</th>
+    </tr>
+
+
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@i.nome</td>
+            <td>@i.Aprovado</td>
+            <td>@i.Turma.nome</td>
+            <td>
+
+                <button onclick="codigoAluno.value = @i.AlunoId type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">
+                    Excluir
+                </button>
+
+                @Html.ActionLink("Editar", "Atualizar", new { id = i.TurmaId }, new { @class = "btn btn-info btn-xs" })
+
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmação</h4>
+            </div>
+            <div class="modal-body">
+                Deseja realmente Excluir o Aluno?
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Aluno"))
+                {
+                    //Hidden escondido
+                    <input type="hidden" name="id" id="codigoAluno" />
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
